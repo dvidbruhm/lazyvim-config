@@ -19,6 +19,24 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+-- unset s
+map({ "n", "x", "v" }, "s", "<Nop>")
+
+-- see line diagnostics
+map("n", "gl", vim.diagnostic.open_float, { desc = "See line diagnostics" })
+
+-- change buffer
+map("n", "<S-right>", ":bnext<CR>")
+map("n", "<S-left>", ":bprevious<CR>")
+
+-- Move Lines
+map("n", "<A-S-Down>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-S-Up>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("v", "<A-S-down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<A-S-up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("i", "<A-S-down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<A-S-up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+
 -- better indenting
 map("v", "<tab>", ">gv")
 map("v", "<S-tab>", "<gv")
